@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest
+  schemaVersion="1.1"
+  templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>FullModuleTemplate</name>
+    <id>52a2f22c-f4cd-48d4-8011-cb609b39da62</id>
+    <version>0.0.1</version>
+    <title>Full Module Template</title>
+    <description></description>
+    <author>Kevin Nishimura</author>
+    <tags></tags>
+  </metadata>
+<parameters>
+    <parameter name="FullName" type="text" prompt="Module author's name" />
+    <parameter name="ModuleName" type="text" prompt="Name of your module" />
+    <parameter name="ModuleDesc" type="text" prompt="Brief description on this module" />
+    <parameter name="Version" type="text" prompt="Initial module version" default="0.0.1" />
+    <parameter name="GitHubUserName" type="text" prompt="GitHub username" default="${PLASTER_PARAM_FullName}"/>
+    <parameter name="GitHubRepo" type="text" prompt="Github repo name for this module" default="${PLASTER_PARAM_ModuleName}"/>
+</parameters>
+  <content>
+    <message>
+    Creating folder structure
+    </message>
+    <file source='' destination='docs\images'/>
+    <file source='' destination='tests'/>
+    <file source='' destination='tests'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\public'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\private'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\classes'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\data'/>
+
+    <message>
+    Deploying common files
+    </message>
+    <file source='LICENSE'  destination=''/>
+    <templateFile source='README.md'   destination=''/>
+    <templateFile source='root\module\module.psm1' destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
+    
+    <newModuleManifest 
+        destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'
+        moduleVersion='$PLASTER_PARAM_Version'
+        rootModule='${PLASTER_PARAM_ModuleName}.psm1'
+        author='$PLASTER_PARAM_FullName'
+        description='$PLASTER_PARAM_ModuleDesc'
+        encoding='UTF8-NoBOM'/>
+
+</content>
+</plasterManifest>
